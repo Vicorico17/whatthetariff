@@ -35,12 +35,18 @@ A web application to explore and track U.S. tariffs imposed on different countri
    NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
    ```
 
-4. Run the development server:
+4. Set up the database:
+   - Go to your Supabase dashboard
+   - Navigate to the SQL Editor
+   - Run the schema creation SQL (see Database Schema section below)
+   - Run the initial data SQL from `src/db/initial_data.sql`
+
+5. Run the development server:
    ```bash
    npm run dev
    ```
 
-5. Open [http://localhost:3000](http://localhost:3000) in your browser.
+6. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## Database Schema
 
@@ -55,7 +61,23 @@ CREATE TABLE tariffs (
   status TEXT CHECK (status IN ('active', 'inactive')) DEFAULT 'active',
   created_at TIMESTAMP DEFAULT now()
 );
+
+-- Create indexes for better performance
+CREATE INDEX idx_tariffs_country ON tariffs(country);
+CREATE INDEX idx_tariffs_tariff_rate ON tariffs(tariff_rate DESC);
+CREATE INDEX idx_tariffs_effective_date ON tariffs(effective_date DESC);
 ```
+
+## Initial Data
+
+The application comes with a comprehensive set of initial tariff data that includes:
+- Global baseline tariffs
+- Country-specific reciprocal tariffs
+- Special tariffs for major trading partners (Canada, Mexico, China)
+- Sanctions-related tariffs
+- Digital Services Tax (DST) related tariffs
+
+The initial data can be found in `src/db/initial_data.sql` and represents tariff rates effective from 2025.
 
 ## Contributing
 
