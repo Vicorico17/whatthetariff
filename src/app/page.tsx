@@ -59,10 +59,10 @@ export default function Home() {
           <p className="text-lg text-gray-600 dark:text-gray-400 mb-4">
             Explore current U.S. tariffs by country
           </p>
-          <div className="text-sm bg-blue-100 dark:bg-blue-900 p-2 rounded mb-2">
+          <div className="text-sm bg-blue-100 dark:bg-blue-900 p-2 rounded mb-2 text-blue-800 dark:text-blue-200">
             {connectionTest}
           </div>
-          <div className="text-xs bg-gray-100 dark:bg-gray-800 p-2 rounded font-mono whitespace-pre">
+          <div className="text-xs bg-gray-100 dark:bg-gray-800 p-2 rounded font-mono whitespace-pre text-gray-800 dark:text-gray-300">
             {debugInfo}
           </div>
         </header>
@@ -83,8 +83,14 @@ export default function Home() {
         )}
 
         <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-          <HotTariffs />
-          <RecentTariffs />
+          <div>
+            <h2 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">Hot Tariffs</h2>
+            <HotTariffs />
+          </div>
+          <div>
+            <h2 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">Recent Tariffs</h2>
+            <RecentTariffs />
+          </div>
         </div>
       </div>
     </main>

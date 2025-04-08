@@ -103,7 +103,7 @@ export default function TariffList({ tariffs, loading, error, title }: TariffLis
         >
           <div className="p-4 bg-gray-50 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 flex items-center space-x-2">
             {/* Add flag logic if needed for All Countries */}
-            <h3 className="text-lg font-medium dark:text-white">
+            <h3 className="text-lg font-medium text-gray-900 dark:text-white">
               All Countries
             </h3>
           </div>
@@ -162,7 +162,7 @@ export default function TariffList({ tariffs, loading, error, title }: TariffLis
           >
             <div className="p-4 bg-gray-50 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 flex items-center space-x-2">
               {flagEmoji && <span className="text-xl">{flagEmoji}</span>} 
-              <h3 className="text-lg font-medium dark:text-white">
+              <h3 className="text-lg font-medium text-gray-900 dark:text-white">
                 {country}
               </h3>
             </div>
