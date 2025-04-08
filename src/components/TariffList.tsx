@@ -32,45 +32,71 @@ export default function TariffList({ tariffs, loading, error, title }: TariffLis
     );
   }
 
+  // Group tariffs by country
+  const groupedTariffs = tariffs.reduce((acc, tariff) => {
+    if (!acc[tariff.country]) {
+      acc[tariff.country] = [];
+    }
+    acc[tariff.country].push(tariff);
+    return acc;
+  }, {} as Record<string, Tariff[]>);
+
   return (
-    <div className="space-y-4">
+    <div className="space-y-6">
       {title && (
         <h2 className="text-xl font-semibold mb-4 dark:text-white">{title}</h2>
       )}
-      <div className="grid gap-4">
-        {tariffs.map((tariff) => (
-          <div
-            key={tariff.id}
-            className="p-4 bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700"
-          >
-            <div className="flex justify-between items-start">
-              <div>
-                <h3 className="font-medium text-lg dark:text-white">
-                  {tariff.tariff_name}
-                </h3>
-                <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">
-                  {tariff.country}
-                </p>
-              </div>
-              <div className="text-right">
-                <span className="inline-block px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm font-medium">
-                  {tariff.tariff_rate}%
-                </span>
-              </div>
-            </div>
-            
-            {tariff.description && (
-              <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
-                {tariff.description}
-              </p>
-            )}
-            
-            <div className="mt-3 text-xs text-gray-500 dark:text-gray-400">
-              Effective: {new Date(tariff.effective_date).toLocaleDateString()}
-            </div>
+      
+      {Object.entries(groupedTariffs).map(([country, countryTariffs]) => (
+        <div
+          key={country}
+          className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden"
+        >
+          <div className="p-4 bg-gray-50 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+            <h3 className="text-lg font-medium dark:text-white">
+              {country}
+            </h3>
           </div>
-        ))}
-      </div>
+
+          <div className="divide-y divide-gray-200 dark:divide-gray-700">
+            {countryTariffs.map((tariff) => (
+              <div key={tariff.id} className="p-4">
+                <div className="flex justify-between items-start mb-2">
+                  <div className="flex-1">
+                    <h4 className="font-medium text-gray-900 dark:text-white">
+                      {tariff.tariff_name}
+                    </h4>
+                    {tariff.description && (
+                      <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                        {tariff.description}
+                      </p>
+                    )}
+                  </div>
+                  <div className="ml-4">
+                    <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200">
+                      {tariff.tariff_rate}%
+                    </span>
+                  </div>
+                </div>
+                
+                <div className="flex items-center text-xs text-gray-500 dark:text-gray-400 mt-2">
+                  <span>
+                    Effective: {new Date(tariff.effective_date).toLocaleDateString()}
+                  </span>
+                  <span className="mx-2">•</span>
+                  <span className={`capitalize ${
+                    tariff.status === 'active' 
+                      ? 'text-green-600 dark:text-green-400' 
+                      : 'text-red-600 dark:text-red-400'
+                  }`}>
+                    {tariff.status}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
     </div>
   );
 } 
