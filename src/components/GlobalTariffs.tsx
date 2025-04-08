@@ -21,7 +21,7 @@ export default function GlobalTariffs() {
       <p className="text-gray-600 dark:text-gray-400 mt-1">Base and additional global tariffs</p>
       <div className="bg-yellow-50 dark:bg-yellow-900/20 p-4 rounded-lg mb-4">
         <span className="text-gray-700 dark:text-gray-300">Total Implemented Tariff Rate:</span>
-        <span className="text-2xl font-bold text-yellow-600 dark:text-yellow-400">{sumImplementedTariffs.toFixed(1)}%</span>
+        <span className="text-2xl font-bold text-yellow-700 dark:text-yellow-400">{sumImplementedTariffs.toFixed(1)}%</span>
       </div>
       <div className="space-y-4 mt-4">
         {globalTariffs.map((tariff) => (
@@ -33,7 +33,15 @@ export default function GlobalTariffs() {
             <p className="text-gray-600 dark:text-gray-400 text-sm mb-2">{tariff.description}</p>
             <div className="flex justify-between text-sm text-gray-500 dark:text-gray-400">
               <span>Effective: {new Date(tariff.effective_date).toLocaleDateString()}</span>
-              <span className="capitalize">Status: {tariff.status}</span>
+              <span className={`capitalize font-medium ${ 
+                tariff.status === 'implemented' 
+                  ? 'text-green-700 dark:text-green-400'
+                  : tariff.status === 'threatened'
+                  ? 'text-yellow-700 dark:text-yellow-400'
+                  : 'text-gray-700 dark:text-gray-400'
+              }`}>
+                Status: {tariff.status}
+              </span>
             </div>
           </div>
         ))}

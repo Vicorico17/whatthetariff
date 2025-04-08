@@ -101,7 +101,7 @@ export default function CountrySelector({ onCountrySelect }: CountrySelectorProp
           {HOT_SEARCHES.map((country) => (
             <button
               key={country}
-              className="px-3 py-1 text-sm bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300 rounded-full hover:bg-blue-100 dark:hover:bg-blue-900/40 transition-colors border border-blue-200 dark:border-blue-800"
+              className="px-3 py-1 text-sm bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full hover:bg-blue-100 dark:hover:bg-blue-900/40 transition-colors border border-blue-200 dark:border-blue-800"
               onClick={() => handleSelectCountry(country)}
             >
               {country}

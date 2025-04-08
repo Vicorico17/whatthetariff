@@ -135,10 +135,10 @@ export default function TariffList({ tariffs, loading, error, title }: TariffLis
                   <span className="mx-2">•</span>
                   <span className={`capitalize font-medium ${ 
                     tariff.status === 'implemented' 
-                      ? 'text-green-600 dark:text-green-400' 
+                      ? 'text-green-700 dark:text-green-400'
                       : tariff.status === 'threatened'
-                      ? 'text-yellow-600 dark:text-yellow-400'
-                      : 'text-gray-600 dark:text-gray-400' // Default/fallback color
+                      ? 'text-yellow-700 dark:text-yellow-400'
+                      : 'text-gray-700 dark:text-gray-400'
                   }`}>
                     {tariff.status}
                   </span>
@@ -194,10 +194,10 @@ export default function TariffList({ tariffs, loading, error, title }: TariffLis
                     <span className="mx-2">•</span>
                     <span className={`capitalize font-medium ${ 
                       tariff.status === 'implemented' 
-                        ? 'text-green-600 dark:text-green-400' 
+                        ? 'text-green-700 dark:text-green-400'
                         : tariff.status === 'threatened'
-                        ? 'text-yellow-600 dark:text-yellow-400'
-                        : 'text-gray-600 dark:text-gray-400' // Default/fallback color
+                        ? 'text-yellow-700 dark:text-yellow-400'
+                        : 'text-gray-700 dark:text-gray-400'
                     }`}>
                       {tariff.status}
                     </span>
