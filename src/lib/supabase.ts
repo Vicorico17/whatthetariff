@@ -51,6 +51,6 @@ export type Tariff = {
   tariff_rate: number;
   description: string | null;
   effective_date: string;
-  status: 'active' | 'inactive';
+  status: 'active' | 'inactive' | 'implemented' | 'threatened';
   created_at: string;
 }; 

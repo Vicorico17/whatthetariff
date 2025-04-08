@@ -2,7 +2,7 @@ import { useRecentTariffs } from '@/hooks/useTariffs';
 import TariffList from './TariffList';
 
 export default function RecentTariffs() {
-  const { tariffs, loading, error } = useRecentTariffs(5);
+  const { tariffs, loading, error } = useRecentTariffs();
 
   return (
     <TariffList

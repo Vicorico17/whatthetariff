@@ -4,7 +4,7 @@ import TariffList from './TariffList';
 import { supabase } from '@/lib/supabase';
 
 export default function HotTariffs() {
-  const { tariffs, loading, error } = useHotTariffs(5);
+  const { tariffs, loading, error } = useHotTariffs();
 
   useEffect(() => {
     // Direct test of the tariffs table
