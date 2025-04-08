@@ -1,59 +1,70 @@
+# WhatTheTariff
 
-![tw-banner](https://github.com/thirdweb-example/next-starter/assets/57885104/20c8ce3b-4e55-4f10-ae03-2fe4743a5ee8)
+A web application to explore and track U.S. tariffs imposed on different countries. Built with Next.js and Supabase.
 
-# thirdweb-next-starter
+## Features
 
-Starter template to build an onchain react native app with [thirdweb](https://thirdweb.com/) and [next](https://nextjs.org/).
+- **Tariffs by Country**: Search and view tariffs for specific countries
+- **Hot Tariffs**: View the highest tariff rates currently in effect
+- **Recent Tariffs**: Track the most recently updated tariffs
 
-## Installation
+## Tech Stack
 
-Install the template using [thirdweb create](https://portal.thirdweb.com/cli/create)
+- **Frontend**: Next.js 14, React, TypeScript, Tailwind CSS
+- **Backend**: Supabase (PostgreSQL)
+- **Authentication**: Supabase Auth
+- **Hosting**: Vercel (planned)
 
-```bash
-  npx thirdweb create app --next
+## Getting Started
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Vicorico17/whatthetariff.git
+   cd whatthetariff
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Set up environment variables:
+   Create a `.env.local` file with your Supabase credentials:
+   ```
+   NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+   ```
+
+4. Run the development server:
+   ```bash
+   npm run dev
+   ```
+
+5. Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## Database Schema
+
+```sql
+CREATE TABLE tariffs (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  country TEXT NOT NULL,
+  tariff_name TEXT NOT NULL,
+  tariff_rate NUMERIC NOT NULL,
+  description TEXT,
+  effective_date DATE NOT NULL,
+  status TEXT CHECK (status IN ('active', 'inactive')) DEFAULT 'active',
+  created_at TIMESTAMP DEFAULT now()
+);
 ```
 
-## Environment Variables
+## Contributing
 
-To run this project, you will need to add the following environment variables to your .env file:
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-`CLIENT_ID`
+## License
 
-To learn how to create a client ID, refer to the [client documentation](https://portal.thirdweb.com/typescript/v5/client). 
-
-## Run locally
-
-Install dependencies
-
-```bash
-yarn
-```
-
-Start development server
-
-```bash
-yarn dev
-```
-
-Create a production build
-
-```bash
-yarn build
-```
-
-Preview the production build
-
-```bash
-yarn start
-```
-
-## Resources
-
-- [Documentation](https://portal.thirdweb.com/typescript/v5)
-- [Templates](https://thirdweb.com/templates)
-- [YouTube](https://www.youtube.com/c/thirdweb)
-- [Blog](https://blog.thirdweb.com)
-
-## Need help?
-
-For help or feedback, please [visit our support site](https://thirdweb.com/support)
+This project is licensed under the MIT License - see the LICENSE file for details.
