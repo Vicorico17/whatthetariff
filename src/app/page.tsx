@@ -12,7 +12,7 @@ export default function Home() {
   const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
   const [connectionTest, setConnectionTest] = useState<string>('Testing connection...');
   const [debugInfo, setDebugInfo] = useState<string>('Loading debug info...');
-  const { tariffs, loading, error } = useTariffsByCountry(selectedCountry);
+  const { tariffs, error } = useTariffsByCountry(selectedCountry);
 
   useEffect(() => {
     // Debug environment variables
@@ -76,7 +76,7 @@ export default function Home() {
             <TariffList
               title={`Tariffs for ${selectedCountry}`}
               tariffs={tariffs}
-              loading={loading}
+              loading={false}
               error={error}
             />
           </div>

@@ -6,11 +6,17 @@ const supabaseUrl = 'https://puichfxnrloxdgpxnlvv.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB1aWNoZnhucmxveGRncHhubHZ2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQxNDA4MTksImV4cCI6MjA1OTcxNjgxOX0.ZCEO2bTFgNruIhJalABt8D1_oBbxA-F5synvV8rci-U';
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-export function useTariffsByCountry(country: string) {
+export function useTariffsByCountry(country: string | null) {
   const [tariffs, setTariffs] = useState<Tariff[]>([]);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    if (!country) {
+      setTariffs([]);
+      setError(null);
+      return;
+    }
+    
     const fetchTariffs = async () => {
       console.log('Querying tariffs for country:', country);
       const { data, error } = await supabase
