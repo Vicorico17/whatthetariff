@@ -5,6 +5,8 @@ interface CountrySelectorProps {
   onCountrySelect: (country: string) => void;
 }
 
+const HOT_SEARCHES = ['China', 'European Union', 'Russia', 'Canada'];
+
 export default function CountrySelector({ onCountrySelect }: CountrySelectorProps) {
   const [countries, setCountries] = useState<string[]>([]);
   const [search, setSearch] = useState('');
@@ -90,13 +92,13 @@ export default function CountrySelector({ onCountrySelect }: CountrySelectorProp
 
       <div className="mt-4">
         <div className="text-sm text-gray-500 dark:text-gray-400 mb-2">
-          Available Countries:
+          Hot Searches:
         </div>
         <div className="flex flex-wrap gap-2">
-          {countries.slice(0, 5).map((country) => (
+          {HOT_SEARCHES.map((country) => (
             <button
               key={country}
-              className="px-3 py-1 text-sm bg-gray-100 dark:bg-gray-700 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+              className="px-3 py-1 text-sm bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 rounded-full hover:bg-red-100 dark:hover:bg-red-900/30 transition-colors border border-red-200 dark:border-red-800"
               onClick={() => {
                 onCountrySelect(country);
                 setSearch(country);
@@ -106,11 +108,6 @@ export default function CountrySelector({ onCountrySelect }: CountrySelectorProp
               {country}
             </button>
           ))}
-          {countries.length > 5 && (
-            <span className="px-3 py-1 text-sm text-gray-500 dark:text-gray-400">
-              +{countries.length - 5} more
-            </span>
-          )}
         </div>
       </div>
     </div>
