@@ -134,9 +134,9 @@ export default function TariffList({ tariffs, loading, error, title }: TariffLis
                   </span>
                   <span className="mx-2">•</span>
                   <span className={`capitalize font-medium ${ 
-                    tariff.status === 'implemented' 
+                    tariff.status === 'active' 
                       ? 'text-green-700 dark:text-green-400'
-                      : tariff.status === 'threatened'
+                      : tariff.status === 'pending'
                       ? 'text-yellow-700 dark:text-yellow-400'
                       : 'text-gray-700 dark:text-gray-400'
                   }`}>
@@ -193,9 +193,9 @@ export default function TariffList({ tariffs, loading, error, title }: TariffLis
                     </span>
                     <span className="mx-2">•</span>
                     <span className={`capitalize font-medium ${ 
-                      tariff.status === 'implemented' 
+                      tariff.status === 'active' 
                         ? 'text-green-700 dark:text-green-400'
-                        : tariff.status === 'threatened'
+                        : tariff.status === 'pending'
                         ? 'text-yellow-700 dark:text-yellow-400'
                         : 'text-gray-700 dark:text-gray-400'
                     }`}>
