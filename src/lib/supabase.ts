@@ -44,13 +44,18 @@ supabase
   });
 
 // Type definitions for our Supabase tables
-export type Tariff = {
-  id: string;
+export interface Tariff {
+  id: number;
   country: string;
   tariff_name: string;
   tariff_rate: number;
   description: string | null;
   effective_date: string;
-  status: 'active' | 'inactive' | 'implemented' | 'threatened';
+  status: 'active' | 'inactive' | 'pending';
+  federal_register_doc_number: string | null;
+  federal_register_citation: string | null;
+  federal_register_url: string | null;
+  federal_register_publication_date: string | null;
   created_at: string;
-}; 
+  updated_at: string;
+} 
